@@ -24,8 +24,8 @@ namespace Program
         {
             Timer timer = new Timer();
             
-            timer.Method(() => { Console.WriteLine("RED");}, 2);
-            timer.Method(() => { Console.WriteLine("GREEN");}, 4);
+            timer.Method(() => { Console.WriteLine("RED");}, 1);
+            timer.Method(() => { Console.WriteLine("GREEN");}, 3);
         }
     }
 }
