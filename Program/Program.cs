@@ -3,17 +3,15 @@ using System.Threading;
 
 namespace Program
 {
-    public delegate void MyDelegate(string text, int t);
-
-    static class Timer
+    public class Timer
     {
-        public static void Method(string text, int t)
+        public void Method(Action function, int t)
         {
             new Thread(() =>
             {
                 while (true)
                 {
-                    Console.WriteLine(text);
+                    function.Invoke();
                     Thread.Sleep(TimeSpan.FromSeconds(t));
                 }
             }).Start();
@@ -24,10 +22,10 @@ namespace Program
     {
         static void Main()
         {
-            MyDelegate myDelegate = Timer.Method;
+            Timer timer = new Timer();
             
-            myDelegate.Invoke("RED", 1);
-            myDelegate.Invoke("YELLOW", 5);
+            timer.Method(() => { Console.WriteLine("RED");}, 2);
+            timer.Method(() => { Console.WriteLine("GREEN");}, 4);
         }
     }
 }
